@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, } from "react-bootstrap";
 import axios from "axios";
 
@@ -10,13 +10,29 @@ const CarForm = (props) => {
 
     const car = {make: make, model: model, year: year, color: color}
 
+    useEffect (() => {
+      if (props.id) {
+        setMake(props.make)
+        setModel(props.model)
+        setYear(props.year)
+        setColor(props.color)
+      }
+    }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault();
-      axios.post("/api/cars", {make, model, year, color})
-        .then( res => {
-          props.addCar(res.data)
-          props.toggleForm();
-        })
+      if (props.editCar) {
+        props.editCar(props.id, car)
+        // toggle form after info is submitted
+        props.toggleEdit()
+      } else {
+        axios.post("/api/cars", car)
+          .then( res => {
+            props.addCar(res.data)
+            props.toggleForm();
+          })
+     }
+
   }
 
   return (
