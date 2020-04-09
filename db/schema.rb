@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_234834) do
+ActiveRecord::Schema.define(version: 2020_04_09_001830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,4 +24,19 @@ ActiveRecord::Schema.define(version: 2020_03_30_234834) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "features", force: :cascade do |t|
+    t.boolean "self_driving"
+    t.boolean "sunroof"
+    t.boolean "electric"
+    t.boolean "fourwd"
+    t.boolean "heated_seats"
+    t.boolean "backup_camera"
+    t.boolean "used"
+    t.bigint "car_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["car_id"], name: "index_features_on_car_id"
+  end
+
+  add_foreign_key "features", "cars"
 end

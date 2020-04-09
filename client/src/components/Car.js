@@ -6,7 +6,7 @@ import CarForm from "./CarForm";
 const Car = (props) => {
   const [editing, setEditing] = useState(false)
  
-  const car = {make: props.make, model: props.model, year: props.year, color: props.color}
+  const car = {id : props.id, make: props.make, model: props.model, year: props.year, color: props.color}
 
   // <Link to={{pathname: `/CarForm`, car: car, isEditing: true }}>
 
