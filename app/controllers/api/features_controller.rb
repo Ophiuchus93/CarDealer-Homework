@@ -40,6 +40,6 @@ class Api::FeaturesController < ApplicationController
     end
 
     def feature_params
-      params.require(:feature).permit(:self_driving, :sunroof, :electric, :fourwd, :heated_seats, :backup_camera, :used)
+      params.require(:feature).permit(:name, :exists)
     end
 end
