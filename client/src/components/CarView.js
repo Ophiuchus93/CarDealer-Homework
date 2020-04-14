@@ -23,7 +23,7 @@ const CarView = ({ id, make, model, year, color, match }) => {
         <Card.Body>Year: {car.year}</Card.Body>
         <Card.Body>Color: {car.color}</Card.Body>
       </Card>
-        <Features carID={car.id} />
+        <Features carID={match.params.id} />
     </>
   )
 };
