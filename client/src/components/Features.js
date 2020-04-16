@@ -1,4 +1,5 @@
 import React, { useState, useEffect, } from "react";
+import FeatureForm from "./FeatureForm";
 import { InputGroup, } from "react-bootstrap";
 import axios from "axios";
 
@@ -13,6 +14,8 @@ const Features = ({ carID }) => {
       })
   }, [])
 
+  const addFeature = (feature) => setFeatures([feature, ...features])
+
   const renderFeatures = () => {
     return features.map(feature => {
       return <ul>
@@ -25,6 +28,7 @@ const Features = ({ carID }) => {
     <>
       <h1> Features </h1>
       <div>
+        <FeatureForm carID={carID} addFeature={addFeature} />
         {renderFeatures()}
       </div>
     </>

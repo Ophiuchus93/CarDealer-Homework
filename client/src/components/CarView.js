@@ -1,5 +1,6 @@
 import React, { useEffect, useState, } from "react";
 import Features from "./Features";
+// import FeatureForm from "./FeatureForm";
 import { Card, } from "react-bootstrap";
 import axios from "axios";
 
@@ -23,6 +24,8 @@ const CarView = ({ id, make, model, year, color, match }) => {
         <Card.Body>Year: {car.year}</Card.Body>
         <Card.Body>Color: {car.color}</Card.Body>
       </Card>
+      <br />
+        {/* <FeatureForm carID={match.params.id} /> */}
         <Features carID={match.params.id} />
     </>
   )

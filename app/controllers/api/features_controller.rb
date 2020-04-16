@@ -11,7 +11,7 @@ class Api::FeaturesController < ApplicationController
   end
 
   def create
-    feature = @car.feature.new(feature_params)
+    feature = @car.features.new(feature_params)
 
     if feature.save
       render json: feature
@@ -40,6 +40,6 @@ class Api::FeaturesController < ApplicationController
     end
 
     def feature_params
-      params.require(:feature).permit(:name, :exists)
+      params.require(:feature).permit(:car_id, :name, :exists)
     end
 end
