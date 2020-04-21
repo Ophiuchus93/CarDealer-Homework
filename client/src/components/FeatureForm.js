@@ -3,10 +3,10 @@ import { Button, Form, } from "react-bootstrap"
 import axios from "axios"
 
 const FeatureForm = (props) => {
-  const [name, setName] = useState({})
-  const [exists, setExists] = useState(true)
+  const [name, setName] = useState("")
+  const [exists, setExists] = useState(false)
 
-  const carFeature = { name: name }
+  const carFeature = { name: name, exists: exists, }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,13 +26,20 @@ const FeatureForm = (props) => {
           type="input"
           name="name"
           required
+          autoFocus
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </Form.Group>
 
       <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Does this car have this feature?" />
+        <Form.Check 
+        type="checkbox" 
+        label="Does this car have this feature?" 
+        name="exists"
+        value={exists}
+        onChange={(e) => setExists(!exists)}
+        />
       </Form.Group>
       <Button type="submit" >Submit</Button>
     </Form>
