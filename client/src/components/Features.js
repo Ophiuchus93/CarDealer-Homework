@@ -6,8 +6,6 @@ import axios from "axios";
 
 const Features = ({ carID }) => {
   const [features, setFeatures] = useState([])
-  const [exists, setExists] = useState(false)
-
 
   useEffect(() => {
     axios.get(`/api/cars/${carID}/features`)
@@ -17,12 +15,23 @@ const Features = ({ carID }) => {
   }, [])
 
   const addFeature = (feature) => setFeatures([feature, ...features])
-
-  // const toggleExists = () => {setExists(!exists)}
+ 
+  
+  const updateFeature = (feature, carID, id, ) => {
+    axios.put(`/api/cars/${carID}/features/${id}`, feature)
+      .then( res => {
+        const updateFeature = (features.map(feature => {
+          if (feature.id === id)
+            return res.data
+           return feature; 
+          }))
+          setFeatures(updateFeature)
+      })
+  }
 
   const renderFeatures = () => {
     return features.map(feature => (
-      <ShowFeature  feature={feature} />
+      <ShowFeature key={feature.id}  feature={feature} carID={carID} updateFeature={updateFeature}/>
     ))
   }
 
